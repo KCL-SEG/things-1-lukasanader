@@ -1,14 +1,13 @@
 from django.db import models
-import django.core.validators
+from django.core.validators import MaxValueValidator,MinValueValidator
 
 # Create your models here.
 class Thing(models.Model):
     name= models.CharField(unique=True,max_length=30,blank=False)
-    description = models.TextField(max_length=120,blank=True)
-    quantity = models.IntegerField(
+    description = models.TextField(unique=False,max_length=120,blank=True)
+    quantity = models.PositiveIntegerField(unique=False,
         validators=[
-            django.core.validators.MinValueValidator(0),
-            django.core.validators.MaxValueValidator(100)
+            MinValueValidator(0),
+            MaxValueValidator(100)
         ],
-        blank=True
     )
