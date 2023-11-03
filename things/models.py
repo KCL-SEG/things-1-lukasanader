@@ -9,5 +9,6 @@ class Thing(models):
         validators=[
             django.core.validators.MinValueValidator(0),
             django.core.validators.MaxValueValidator(100)
-        ]
+        ],
+        blank=True
     )
